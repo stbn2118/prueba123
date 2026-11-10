@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TecnoFix - Reparación y Mantenimiento de Equipos de Cómputo</title>
+  <style>
+    /* ==========================================================================
+       VARIABLES Y ESTILOS BASE (Tema TecnoFix: Azul Profundo y Cian)
+       ========================================================================== */
+    :root {
+      --primary-dark: #0a192f;
+      --primary: #0f4c81;
+      --primary-light: #1b6ca8;
+      --accent: #00d2ff;
+      --accent-hover: #00b8e6;
+      --text-main: #2b3a4a;
+      --text-muted: #64748b;
+      --bg-light: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow: 0 10px 30px -10px rgba(0, 50, 100, 0.1);
+      --shadow-hover: 0 20px 40px -15px rgba(0, 150, 255, 0.2);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       NAVEGACIÓN / HEADER
+       ========================================================================== */
+    header {
+      background-color: rgba(10, 25, 47, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 75px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
+
+    .logo-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      color: #fff !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       SECCIÓN HERO
+       ========================================================================== */
+    .hero {
+      padding: 160px 0 100px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #0d2847 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(90deg, #ffffff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary-dark);
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card-graphic {
+      width: 100%;
+      max-width: 450px;
+      height: 340px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .graphic-icon {
+      width: 90px;
+      height: 90px;
+      background: rgba(0, 210, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--accent);
+    }
+
+    .graphic-icon svg {
+      width: 45px;
+      height: 45px;
+      fill: var(--accent);
+    }
+
+    .stats-badge {
+      position: absolute;
+      bottom: -20px;
+      background: #ffffff;
+      color: var(--primary-dark);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .stats-badge strong {
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: block;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       SECCIÓN SERVICIOS
+       ========================================================================== */
+    .services {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      padding: 2.5rem 1.8rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(0, 210, 255, 0.4);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(15, 76, 129, 0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--primary);
+    }
+
+    .service-icon svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--primary);
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon svg {
+      fill: #ffffff;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-dark);
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    /* ==========================================================================
+       SECCIÓN SOBRE NOSOTROS
+       ========================================================================== */
+    .about {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .values-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .value-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(0, 210, 255, 0.2);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .value-text h4 {
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+    }
+
+    .value-text p {
+      font-size: 0.85rem;
+      margin-bottom: 0;
+    }
+
+    .about-box {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #ffffff;
+      padding: 3rem;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .about-box h3 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-box ul {
+      margin-top: 1.5rem;
+    }
+
+    .about-box li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       SECCIÓN CONTACTO
+       ========================================================================== */
+    .contact {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      padding: 1.8rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(15, 76, 129, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 25px;
+      height: 25px;
+      fill: var(--primary);
+    }
+
+    .info-details h4 {
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-details p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-form-container {
+      background: var(--bg-card);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .contact-form-container h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background-color: #f8fafc;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-notice {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+      font-style: italic;
+    }
+
+    /* Mensaje de alerta visual para el envío simulado */
+    .form-alert {
+      display: none;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .form-alert.success {
+      display: block;
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background-color: var(--primary-dark);
+      color: #94a3b8;
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      margin-top: 1rem;
+      max-width: 350px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links h4 {
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================================================
+       DISEÑO RESPONSIVE (MEDIA QUERIES)
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin: 0 auto 2rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 75px);
+        background-color: var(--primary-dark);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        transition: var(--transition);
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .values-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <!-- Icono SVG de llave/herramienta -->
+          <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.4-2.4c.4-.4.4-1 0-1.3z"/></svg>
+        </div>
+        Tecno<span>Fix</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Sobre Nosotros</a>
+        <a href="#contacto" class="nav-btn">Diagnóstico Gratis</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SECCIÓN HERO -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Soluciones Rápidas para tus <span>Equipos de Cómputo</span></h1>
+        <p>Especialistas en reparación, mantenimiento preventivo y optimización de computadores y laptops. Recuperamos la velocidad y rendimiento de tu tecnología.</p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn btn-primary">Solicitar Servicio</a>
+          <a href="#servicios" class="btn btn-secondary">Ver Servicios</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-card-graphic">
+          <div class="graphic-icon">
+            <!-- Icono Chip / Procesador -->
+            <svg viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></svg>
+          </div>
+          <h3>Soporte Técnico Especializado</h3>
+          <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Atención a domicilio y en taller para particulares y PYMEs.</p>
+          <div class="stats-badge">
+            <strong>100%</strong>
+            <span>Garantía de Satisfacción</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN SERVICIOS -->
+  <section id="servicios" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestros Servicios</h2>
+        <p>Soluciones integrales de hardware y software adaptadas a tus necesidades</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Servicio 1 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2H0c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2h-4zM4 5h16v11H4V5z"/></svg>
+          </div>
+          <h3>Reparación de Hardware</h3>
+          <p>Cambio de pantallas, reparación de placas madre, reemplazo de teclados, discos duros y puertos de carga para Laptops y PCs de escritorio.</p>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </div>
+          <h3>Mantenimiento Preventivo</h3>
+          <p>Limpieza profunda de componentes, cambio de pasta térmica de alto rendimiento y eliminación de polvo para prevenir sobrecalentamiento.</p>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <h3>Optimización de Software</h3>
+          <p>Formateo e instalación limpia de Sistemas Operativos, eliminación de virus/malware y aceleración de tiempos de arranque del sistema.</p>
+        </div>
+
+        <!-- Servicio 4 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+          </div>
+          <h3>Diagnóstico Técnico</h3>
+          <p>Evaluación exhaustiva de componentes para identificar fallas complejas y presupuesto transparente sin compromiso previo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN SOBRE NOSOTROS -->
+  <section id="nosotros" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h3>Sobre TecnoFix</h3>
+          <p>Somos una empresa local comprometida con mantener tus equipos de cómputo funcionando al 100%. Entendemos lo crucial que es la tecnología en tu día a día, ya sea para estudiar, trabajar o entretenerte.</p>
+          <p>Contamos con técnicos certificados y años de experiencia diagnosticando y solucionando todo tipo de fallas informáticas con honestidad y rapidez.</p>
+
+          <div class="values-list">
+            <div class="value-item">
+              <div class="value-icon">✓</div>
+              <div class="value-text">
+                <h4>Honestidad</h4>
+                <p>Presupuestos claros sin costos ocultos.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">✓</div>
+              <div class="value-text">
+                <h4>Rapidez</h4>
+                <p>Diagnóstico en menos de 24 horas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-box">
+          <h3>¿Por qué elegirnos?</h3>
+          <p>Trabajamos con repuestos de alta calidad y ofrecemos garantía por escrito en cada una de nuestras reparaciones.</p>
+          <ul>
+            <li>✔ Atención personalizada y cercana.</li>
+            <li>✔ Respuestas claras sin tecnicismos confusos.</li>
+            <li>✔ Resguardo confidencial de tus archivos y datos.</li>
+            <li>✔ Soporte técnico post-servicio.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONTACTO -->
+  <section id="contacto" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contáctanos</h2>
+        <p>Déjanos un mensaje o visítanos en nuestro local. Estamos listos para ayudarte.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Información de contacto -->
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="info-details">
+              <h4>Ubicación Principal</h4>
+              <p>Av. Tecnológica #452, Col. Centro (Ficticio)</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div class="info-details">
+              <h4>Teléfono / WhatsApp</h4>
+              <p>+52 (555) 019-2834 (Ficticio)</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="info-details">
+              <h4>Correo Electrónico</h4>
+              <p>contacto@tecnofix-ejemplo.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="contact-form-container">
+          <h3>Envíanos tu Consulta</h3>
+          
+          <div id="formAlert" class="form-alert"></div>
+
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo</label>
+              <input type="text" id="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="equipo">Tipo de Equipo / Falla</label>
+              <input type="text" id="equipo" class="form-control" placeholder="Ej. Laptop no enciende / Formateo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Descripción del Problema</label>
+              <textarea id="mensaje" class="form-control" placeholder="Detalla lo que le ocurre a tu equipo..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje</button>
+            
+            <p class="form-notice">* Demostración visual: Este formulario simula la recepción mediante JavaScript y no envía correos electrónicos reales.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.4-2.4c.4-.4.4-1 0-1.3z"/></svg>
+            </div>
+            Tecno<span>Fix</span>
+          </div>
+          <p>Tu aliado de confianza en reparación y mantenimiento técnico informático. Calidad y rapidez garantizada.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Sobre Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Horarios de Atención</h4>
+          <ul>
+            <li>Lunes - Viernes: 9:00 AM - 6:00 PM</li>
+            <li>Sábados: 10:00 AM - 2:00 PM</li>
+            <li>Domingos: Cerrado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TecnoFix - Todos los derechos reservados. Sitio web ficticio para demostración.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT EMBEDDED -->
+  <script>
+    // Menú móvil desplegable
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Simulación de envío de formulario de contacto
+    const contactForm = document.getElementById('contactForm');
+    const formAlert = document.getElementById('formAlert');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+
+      // Mostrar notificación simulada
+      formAlert.className = 'form-alert success';
+      formAlert.innerHTML = `<strong>¡Gracias, ${nombre}!</strong> Hemos recibido tu mensaje correctamente (Simulación). Nos pondremos en contacto contigo pronto.`;
+
+      // Limpiar el formulario
+      contactForm.reset();
+
+      // Desplazar hacia el mensaje
+      formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
